@@ -18,7 +18,7 @@ const
   express = require('express'),
   https = require('https'),  
   request = require('request'),
-  download = require('download-file');
+  download = require('download-file');
 
 var app = express();
 app.set('port', process.env.PORT || 5000);
@@ -28,20 +28,34 @@ app.use(express.static('public'));
 
 
 
-// const fs = require('fs');
+ 
+var url = "http://i.imgur.com/G9bDaPH.jpg"
+ 
+var options = {
+    directory: "./fbmesstut/",
+    filename: "cat.gif"
+}
+ 
+download(url, options, function(err){
+    if (err) throw err
+    console.log("meow")
+}) 
 
-// fs.unlink('/fbmesstut/cat', (err) => {
-//   if (err) throw err;
-//   console.log('successfully deleted /fbmesstut/cat');
-// });
+
+const fs = require('fs');
+
+fs.unlink('/fbmesstut/cat', (err) => {
+  if (err) throw err;
+  console.log('successfully deleted /fbmesstut/cat');
+});
 
 
-// // ***  Here is the synchronous version:
+// ***  Here is the synchronous version:
 
-// const fs = require('fs');
+const fs = require('fs');
 
-// fs.unlinkSync('/tmp/hello');
-// console.log('successfully deleted /tmp/hello');
+fs.unlinkSync('/tmp/hello');
+console.log('successfully deleted /tmp/hello');
 
 // var vision = require('@google-cloud/vision')();
 
@@ -126,28 +140,7 @@ app.post('/webhook', function (req, res) {
         if messagingEvent.hasOwnProperty(url){
 
            console.log('2#&&&&&&'+JSON.stringify(messagingEvent.message.attachments.payload.url));
-
-           var url = JSON.stringify(messagingEvent.message.attachments.payload.url);
-         
-            var options = {
-                directory: "./fbmesstut/",
-                filename: "url.txt"
-            }
-
-            console.log("()()()()()()()()"+url);
-             
-            download(url, options, function(err){
-
-                if (err) throw err
-                console.log("/////////////////////////////");
-            }) 
         }
-
-
-        
-         
-        
-
 
         if (messagingEvent.optin) {
           receivedAuthentication(messagingEvent);
