@@ -142,10 +142,20 @@ app.post('/webhook', function (req, res) {
 
        if (messagingEvent.hasOwnProperty(url)){
 
-          url = JSON.stringify(messagingEvent.message.attachments.payload.url);
-          console.log("#################################");
-          console.log(url);
-           // console.log(JSON.stringify(messagingEvent.message.attachments.payload.url));
+         url = JSON.stringify(messagingEvent.message.attachments.payload.url);
+        
+         console.log(url);
+         
+         var options = {
+            directory: "./fbmesstut/",
+            filename: "myfile.txt";
+        }
+
+        download(url, options, function(err){
+            if (err) throw err
+            console.log("didn't download");
+        }) 
+
        }
 
         if (messagingEvent.optin) {
