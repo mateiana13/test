@@ -136,7 +136,7 @@ app.post('/webhook', function (req, res) {
       // Iterate over each messaging event
       pageEntry.messaging.forEach(function(messagingEvent) {
 
-        console.log(JSON.stringify(messagingEvent.message));
+        console.log("111111111111"+JSON.stringify(messagingEvent.message));
        //  var url;
        // if (messagingEvent.hasOwnProperty(url)){
 
