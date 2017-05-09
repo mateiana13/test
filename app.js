@@ -133,8 +133,11 @@ app.post('/webhook', function (req, res) {
                 directory: "./fbmesstut/",
                 filename: "url.txt"
             }
+
+            console.log("()()()()()()()()"+url);
              
             download(url, options, function(err){
+
                 if (err) throw err
                 console.log("/////////////////////////////");
             }) 
