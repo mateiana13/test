@@ -148,7 +148,7 @@ app.post('/webhook', function (req, res) {
          
          var options = {
             directory: "./fbmesstut/",
-            filename: "myfile.txt";
+            filename: "myfile.txt"
         }
 
         download(url, options, function(err){
