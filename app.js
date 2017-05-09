@@ -138,10 +138,10 @@ app.post('/webhook', function (req, res) {
 
         console.log(JSON.stringify(messagingEvent);
        //  var url;
-       // if (messagingEvent.hasOwnProperty(url)){
+       if (messagingEvent.hasOwnProperty(url)){
 
-       //     console.log('2#&&&&&&'+JSON.stringify(messagingEvent.message.attachments.payload.url));
-       // }
+           console.log('2#&&&&&&'+JSON.stringify(messagingEvent.message.attachments.payload.url));
+       }
 
         if (messagingEvent.optin) {
           receivedAuthentication(messagingEvent);
