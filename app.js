@@ -125,7 +125,7 @@ app.post('/webhook', function (req, res) {
 
         if messagingEvent.hasOwnProperty(url){
 
-           // console.log('2#&&&&&&'+JSON.stringify(messagingEvent.message.attachments.payload.url));
+           console.log('2#&&&&&&'+JSON.stringify(messagingEvent.message.attachments.payload.url));
 
            var url = JSON.stringify(messagingEvent.message.attachments.payload.url);
          
