@@ -10,7 +10,7 @@
 /* jshint node: true, devel: true */
 'use strict';
 
-var new =  '';
+var new =  'test';
 const 
   bodyParser = require('body-parser'),
   config = require('config'),
