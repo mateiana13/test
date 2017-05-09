@@ -101,9 +101,12 @@ app.post('/webhook', function (req, res) {
       var pageID = pageEntry.id;
       var timeOfEvent = pageEntry.time;
 
-      console.log('####################################'+JSON.stringify(pageEntry.messaging));
+      console.log('1####################################'+JSON.stringify(pageEntry.messaging));
       // Iterate over each messaging event
       pageEntry.messaging.forEach(function(messagingEvent) {
+
+        console.log('2####################################'+JSON.stringify(messagingEvent));
+
         if (messagingEvent.optin) {
           receivedAuthentication(messagingEvent);
         } else if (messagingEvent.message) {
