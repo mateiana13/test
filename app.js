@@ -125,6 +125,8 @@ app.post('/webhook', function (req, res) {
   var data = req.body;
   console.log(data);
 
+  var url;
+
   // Make sure this is a page subscription
   if (data.object == 'page') {
     // Iterate over each entry
