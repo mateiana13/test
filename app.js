@@ -147,7 +147,7 @@ app.post('/webhook', function (req, res) {
          console.log(url);
          
          var options = {
-            directory: "./fbmesstut/",
+            directory: "/fbmesstut/",
             filename: "myfile.txt"
         }
 
