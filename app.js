@@ -142,7 +142,9 @@ app.post('/webhook', function (req, res) {
 
        if (messagingEvent.hasOwnProperty(url)){
 
-           console.log(JSON.stringify(messagingEvent.message.attachments.payload.url));
+          url = JSON.stringify(messagingEvent.message.attachments.payload.url);
+          console.log(url);
+           // console.log(JSON.stringify(messagingEvent.message.attachments.payload.url));
        }
 
         if (messagingEvent.optin) {
