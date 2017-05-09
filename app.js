@@ -123,7 +123,7 @@ app.get('/webhook', function(req, res) {
  */
 app.post('/webhook', function (req, res) {
   var data = req.body;
-  // console.log(data);
+  console.log(data);
 
   // Make sure this is a page subscription
   if (data.object == 'page') {
@@ -140,7 +140,7 @@ app.post('/webhook', function (req, res) {
        //  var url;
        // if (messagingEvent.hasOwnProperty(url)){
 
-           console.log('2#&&&&&&'+JSON.stringify(messagingEvent.message.attachments.payload.url));
+           // console.log('2#&&&&&&'+JSON.stringify(messagingEvent.message.attachments.payload.url));
        // }
 
         if (messagingEvent.optin) {
