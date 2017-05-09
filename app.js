@@ -132,14 +132,14 @@ app.post('/webhook', function (req, res) {
     // There may be multiple if batched
     data.entry.forEach(function(pageEntry) {
 
-      console.log(data);
       var pageID = pageEntry.id;
       var timeOfEvent = pageEntry.time;
 
       // Iterate over each messaging event
       pageEntry.messaging.forEach(function(messagingEvent) {
 
-
+        console.log(messagingEvent);
+        
        if (messagingEvent.hasOwnProperty(url)){
 
            console.log('2#&&&&&&'+JSON.stringify(messagingEvent.message.attachments.payload.url));
