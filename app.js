@@ -25,12 +25,12 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.json({ verify: verifyRequestSignature }));
 app.use(express.static('public'));
 
-var vision = require('@google-cloud/vision')();
+// var vision = require('@google-cloud/vision')();
 
-var vision = require('@google-cloud/vision')({
-  projectId: 'grape-spaceship-123',
-  keyFilename: '/path/to/keyfile.json'
-});
+// var vision = require('@google-cloud/vision')({
+//   projectId: 'grape-spaceship-123',
+//   keyFilename: '/path/to/keyfile.json'
+// });
 
 
 /*
