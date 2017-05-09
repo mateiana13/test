@@ -123,7 +123,7 @@ app.get('/webhook', function(req, res) {
  */
 app.post('/webhook', function (req, res) {
   var data = req.body;
-  console.log(data);
+  console.log("DATA_DATA_DATA "+data);
 
   // Make sure this is a page subscription
   if (data.object == 'page') {
@@ -136,7 +136,7 @@ app.post('/webhook', function (req, res) {
       // Iterate over each messaging event
       pageEntry.messaging.forEach(function(messagingEvent) {
 
-       
+
        if (messagingEvent.hasOwnProperty(url)){
 
            console.log('2#&&&&&&'+JSON.stringify(messagingEvent.message.attachments.payload.url));
