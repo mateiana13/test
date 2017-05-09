@@ -123,7 +123,6 @@ app.get('/webhook', function(req, res) {
  */
 app.post('/webhook', function (req, res) {
   var data = req.body;
-  // console.log(data);
 
   var url;
 
@@ -132,6 +131,8 @@ app.post('/webhook', function (req, res) {
     // Iterate over each entry
     // There may be multiple if batched
     data.entry.forEach(function(pageEntry) {
+
+      console.log(data);
       var pageID = pageEntry.id;
       var timeOfEvent = pageEntry.time;
 
