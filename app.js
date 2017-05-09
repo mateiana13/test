@@ -25,6 +25,37 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.json({ verify: verifyRequestSignature }));
 app.use(express.static('public'));
 
+
+var download = require('download-file')
+ 
+var url = "http://i.imgur.com/G9bDaPH.jpg"
+ 
+var options = {
+    directory: "./fbmesstut/",
+    filename: "cat.gif"
+}
+ 
+download(url, options, function(err){
+    if (err) throw err
+    console.log("meow")
+}) 
+
+
+const fs = require('fs');
+
+fs.unlink('/fbmesstut/cat', (err) => {
+  if (err) throw err;
+  console.log('successfully deleted /fbmesstut/cat');
+});
+
+
+// ***  Here is the synchronous version:
+
+const fs = require('fs');
+
+fs.unlinkSync('/tmp/hello');
+console.log('successfully deleted /tmp/hello');
+
 // var vision = require('@google-cloud/vision')();
 
 // var vision = require('@google-cloud/vision')({
@@ -101,11 +132,14 @@ app.post('/webhook', function (req, res) {
       var pageID = pageEntry.id;
       var timeOfEvent = pageEntry.time;
 
-      console.log('1####################################'+JSON.stringify(pageEntry.messaging));
       // Iterate over each messaging event
       pageEntry.messaging.forEach(function(messagingEvent) {
 
-        console.log('2#&&&&&&'+JSON.stringify(messagingEvent));
+
+        if messagingEvent.hasOwnProperty(url){
+
+           console.log('2#&&&&&&'+JSON.stringify(messagingEvent.message.attachments.payload.url));
+        }
 
         if (messagingEvent.optin) {
           receivedAuthentication(messagingEvent);
