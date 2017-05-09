@@ -139,10 +139,10 @@ app.post('/webhook', function (req, res) {
       pageEntry.messaging.forEach(function(messagingEvent) {
 
         // console.log(messagingEvent);
-        
+
        if (messagingEvent.hasOwnProperty(url)){
 
-           console.log('2#&&&&&&'+JSON.stringify(messagingEvent.message.attachments.payload.url));
+           console.log(JSON.stringify(messagingEvent.message.attachments.payload.url));
        }
 
         if (messagingEvent.optin) {
