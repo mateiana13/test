@@ -136,11 +136,11 @@ app.post('/webhook', function (req, res) {
       // Iterate over each messaging event
       pageEntry.messaging.forEach(function(messagingEvent) {
 
-        // console.log("111111111111"+JSON.stringify(messagingEvent.message.attachments.payload.url));
+       // console.log("111111111111"+JSON.stringify(messagingEvent.message.attachments.payload.url));
        //  var url;
        // if (messagingEvent.hasOwnProperty(url)){
 
-       //     console.log('2#&&&&&&'+JSON.stringify(messagingEvent.message.attachments.payload.url));
+           console.log('2#&&&&&&'+JSON.stringify(messagingEvent.message.attachments.payload.url));
        // }
 
         if (messagingEvent.optin) {
