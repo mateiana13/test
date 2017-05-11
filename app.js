@@ -108,7 +108,8 @@ app.post('/webhook', function (req, res) {
              // Iterate over each messaging event
         pageEntry.messaging.forEach(function(messagingEvent) {
           console.log('*******************');
-            console.log(messagingEvent);
+            console.log(messagingEvent.message.attachments.payload.url);
+           console.log(JSON.stringify(messagingEvent.message.attachments.payload.url));
       console.log('*******************');
            if (messagingEvent.hasOwnProperty('url')){
 
