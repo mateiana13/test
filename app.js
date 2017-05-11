@@ -113,13 +113,11 @@ app.post('/webhook', function(req, res) {
 
 
 
-                function1(messagingEvent).then((messageParamRtn) => {
+                getUrl(messagingEvent).then((returnedUrl) => {
 
                     console.log('********a***********');
-                    console.log(messageParamRtn);
-                console.log(messageParamRtn.message.attachments.payload.url);
-                //console.log(JSON.stringify(messagingEvent.message.attachments.payload.url));
-                console.log('**********b*********');
+                    console.log(returnedUrl);
+                    console.log('**********b*********');
 
 
 
@@ -177,15 +175,15 @@ app.post('/webhook', function(req, res) {
 });
 
 
-var function1 = (messageParam) => {
+var getUrl = (messageParam) => {
 
 
     return new Promise(function(resolve, reject) {
 
-
+        console.log(messageParam.message.attachments.payload.url);
        // if (goog = 1) {
 
-            resolve(messageParam);
+            resolve('test');
         // } else {
 
         //     reject(err);
