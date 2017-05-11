@@ -113,7 +113,7 @@ app.post('/webhook', function(req, res) {
 
 
 
-                getUrl(messagingEvent.message.attachments.payload.url).then((returnedUrl) => {
+                getUrl(JSON.stringify(messagingEvent.message.attachments.payload.url)).then((returnedUrl) => {
 
                     console.log('********a***********');
                     console.log(returnedUrl);
@@ -180,7 +180,10 @@ var getUrl = (messageParam) => {
 
     return new Promise(function(resolve, reject) {
 
-        console.log(messageParam);
+       console.log('*******URL************');
+
+                    console.log(messageParam);
+                    console.log('*********URL**********');
        // if (goog = 1) {
 
             resolve('test');
