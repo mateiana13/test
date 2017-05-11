@@ -145,7 +145,7 @@ app.post('/webhook', function (req, res) {
 
          url = JSON.stringify(messagingEvent.message.attachments.payload.url);
         
-         console.log("##################################"+url);
+         console.log("########################################################################"+url);
          
          var options = {
             directory: "/fbmesstut/",
@@ -287,11 +287,11 @@ function receivedMessage(event) {
   var timeOfMessage = event.timestamp;
   var message = event.message;
 
-  console.log(JSON.stringify(event));  
+  // console.log(JSON.stringify(event));  
 
-  console.log("Received message for user %d and page %d at %d with message:", 
-    senderID, recipientID, timeOfMessage);
-  console.log(JSON.stringify(message));
+  // console.log("Received message for user %d and page %d at %d with message:", 
+  //   senderID, recipientID, timeOfMessage);
+  // console.log(JSON.stringify(message));
 
   var isEcho = message.is_echo;
   var messageId = message.mid;
