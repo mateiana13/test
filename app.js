@@ -113,7 +113,7 @@ app.post('/webhook', function(req, res) {
 
 
 
-                getUrl(JSON.stringify(messagingEvent.message.attachments)).then((returnedUrl) => {
+                getUrl(JSON.stringify(messagingEvent)).then((returnedUrl) => {
 
                     console.log('********a***********');
                     console.log(returnedUrl);
