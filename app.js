@@ -87,10 +87,12 @@ app.get('/webhook', function(req, res) {
  * https://developers.facebook.com/docs/messenger-platform/product-overview/setup#subscribe_app
  *
  */
+
+ var url;
 app.post('/webhook', function (req, res) {
   var data = req.body;
 
-  var url;
+  
 
 
   // Make sure this is a page subscription
@@ -102,7 +104,7 @@ app.post('/webhook', function (req, res) {
       var pageID = pageEntry.id;
       var timeOfEvent = pageEntry.time;
 
-      return new Promise(function(resolve, reject){
+  
 
              // Iterate over each messaging event
         pageEntry.messaging.forEach(function(messagingEvent) {
@@ -114,8 +116,7 @@ app.post('/webhook', function (req, res) {
            url = JSON.stringify(messagingEvent.message.attachments.payload.url);
           
            console.log("########################################################################"+url);
-           
-           resolve(url);
+
          }
 
           if (messagingEvent.optin) {
@@ -136,14 +137,14 @@ app.post('/webhook', function (req, res) {
         });
 
       });   //end of promise
- 
-    });
+
 
     // Assume all went well.
     //
     // You must send back a 200, within 20 seconds, to let us know you've 
     // successfully received the callback. Otherwise, the request will time out.
     res.sendStatus(200);
+    console.log(res);
   }
 });
 
