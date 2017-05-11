@@ -132,16 +132,16 @@ app.post('/webhook', function(req, res) {
 
 
 
-                if (messagingEvent.hasOwnProperty('url')) {
+                // if (messagingEvent.hasOwnProperty('url')) {
 
 
-                    url = JSON.stringify(messagingEvent.message.attachments.payload.url);
-                    console.log('*******URL************');
+                //     //url = JSON.stringify(messagingEvent.message.attachments.payload.url);
+                //     console.log('*******URL************');
 
-                    console.log(url);
-                    console.log('*********URL**********');
+                //     console.log(url);
+                //     console.log('*********URL**********');
 
-                }
+                // }
 
 
 
@@ -185,8 +185,10 @@ var getUrl = (messageParam) => {
                     // console.log(ceva.message.attachments[0].payload.url);
                     // console.log('*********URL**********');
        // if (goog = 1) {
-
+        if(ceva.message.attachments)
             resolve(ceva.message.attachments[0].payload.url);
+          else 
+            reject('error');
         // } else {
 
         //     reject(err);
