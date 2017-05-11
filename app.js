@@ -180,13 +180,13 @@ var getUrl = (messageParam) => {
 
     return new Promise(function(resolve, reject) {
 
-       console.log('*******URL************');
+       //console.log('*******URL************');
        var ceva = JSON.parse(messageParam);
-                    console.log(ceva.message.attachments[0]);
-                    console.log('*********URL**********');
+                    // console.log(ceva.message.attachments[0].payload.url);
+                    // console.log('*********URL**********');
        // if (goog = 1) {
 
-            resolve('test');
+            resolve(ceva.message.attachments[0].payload.url);
         // } else {
 
         //     reject(err);
