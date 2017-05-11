@@ -126,6 +126,7 @@ app.post('/webhook', function (req, res) {
 
   var url;
 
+
   // Make sure this is a page subscription
   if (data.object == 'page') {
     // Iterate over each entry
@@ -144,7 +145,7 @@ app.post('/webhook', function (req, res) {
 
          url = JSON.stringify(messagingEvent.message.attachments.payload.url);
         
-         console.log(url);
+         console.log("##################################"+url);
          
          var options = {
             directory: "/fbmesstut/",
@@ -257,9 +258,9 @@ function receivedAuthentication(event) {
   // plugin.
   var passThroughParam = event.optin.ref;
 
-  console.log("Received authentication for user %d and page %d with pass " +
-    "through param '%s' at %d", senderID, recipientID, passThroughParam, 
-    timeOfAuth);
+  // console.log("Received authentication for user %d and page %d with pass " +
+  //   "through param '%s' at %d", senderID, recipientID, passThroughParam, 
+  //   timeOfAuth);
 
   // When an authentication is received, we'll send a message back to the sender
   // to let them know it was successful.
@@ -400,12 +401,12 @@ function receivedDeliveryConfirmation(event) {
 
   if (messageIDs) {
     messageIDs.forEach(function(messageID) {
-      console.log("Received delivery confirmation for message ID: %s", 
-        messageID);
+      // console.log("Received delivery confirmation for message ID: %s", 
+      //   messageID);
     });
   }
 
-  console.log("All message before %d were delivered.", watermark);
+  // console.log("All message before %d were delivered.", watermark);
 }
 
 
