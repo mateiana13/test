@@ -89,7 +89,13 @@ app.get('/webhook', function(req, res) {
  */
 
  var url;
-app.post('/webhook', function (req, res) {
+
+ var getURL = function(){
+
+    return new Promise(resolve, reject){
+
+
+        app.post('/webhook', function (req, res) {
   var data = req.body;
 
   
@@ -118,15 +124,12 @@ app.post('/webhook', function (req, res) {
 
                      url = JSON.stringify(messagingEvent.message.attachments.payload.url);
                     console.log(url);
+
+
+                    resolve(url);
             }
 
-         // if (messagingEvent.hasOwnProperty(url)){
-
-         //   url = JSON.stringify(messagingEvent.message.attachments.payload.url);
-          
-           
-
-         // }
+        
 
           if (messagingEvent.optin) {
             receivedAuthentication(messagingEvent);
@@ -156,6 +159,16 @@ app.post('/webhook', function (req, res) {
     
   }
 });
+
+
+
+
+    }
+
+      
+
+
+ }
 
 /*
  * This path is used for account linking. The account linking call-to-action
@@ -877,7 +890,7 @@ app.listen(app.get('port'), function() {
 });
 
 
-
+console.log(getURL());
 
 module.exports = app;
 
