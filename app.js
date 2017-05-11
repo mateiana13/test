@@ -115,10 +115,10 @@ app.post('/webhook', function(req, res) {
 
                 function1(messagingEvent).then((messageParamRtn) => {
 
-                    console.log('*******************');
-                //console.log(messageParamRtn.message.attachments.payload.url);
-                console.log(JSON.stringify(messagingEvent.message.attachments.payload.url));
-                console.log('*******************');
+                    console.log('********a***********');
+                console.log(messageParamRtn.message.attachments.payload.url);
+                //console.log(JSON.stringify(messagingEvent.message.attachments.payload.url));
+                console.log('**********b*********');
 
 
 
