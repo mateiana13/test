@@ -182,7 +182,7 @@ var getUrl = (messageParam) => {
 
        console.log('*******URL************');
        var ceva = JSON.parse(messageParam);
-                    console.log(ceva);
+                    console.log(ceva.message.attachments);
                     console.log('*********URL**********');
        // if (goog = 1) {
 
