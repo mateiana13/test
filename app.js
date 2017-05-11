@@ -111,13 +111,23 @@ app.post('/webhook', function (req, res) {
 
           // console.log(messagingEvent);
 
-         if (messagingEvent.hasOwnProperty(url)){
+          return new Promise(function(resolve, reject){
+           if (messagingEvent.hasOwnProperty(url)){
 
-           url = JSON.stringify(messagingEvent.message.attachments.payload.url);
+                     url = JSON.stringify(messagingEvent.message.attachments.payload.url);
+                    
+                     
+                      resolve(url);
+            }
+          });
+
+         // if (messagingEvent.hasOwnProperty(url)){
+
+         //   url = JSON.stringify(messagingEvent.message.attachments.payload.url);
           
-            console.log(url.toString());
+           
 
-         }
+         // }
 
           if (messagingEvent.optin) {
             receivedAuthentication(messagingEvent);
