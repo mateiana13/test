@@ -29,40 +29,6 @@ app.use(express.static('public'));
 
 
  
-// var url = "http://i.imgur.com/G9bDaPH.jpg"
-//  
-// var options = {
-//     directory: "./fbmesstut/",
-//     filename: "cat.gif"
-// }
-//  
-// download(url, options, function(err){
-//     if (err) throw err
-//     console.log("meow")
-// }) 
-
-
-// const fs = require('fs');
-
-// fs.unlink('/fbmesstut/cat', (err) => {
-//   if (err) throw err;
-//   console.log('successfully deleted /fbmesstut/cat');
-// });
-
-
-// // ***  Here is the synchronous version:
-
-// const fs = require('fs');
-
-// fs.unlinkSync('/tmp/hello');
-// console.log('successfully deleted /tmp/hello');
-
-// var vision = require('@google-cloud/vision')();
-
-// var vision = require('@google-cloud/vision')({
-//   projectId: 'grape-spaceship-123',
-//   keyFilename: '/path/to/keyfile.json'
-// });
 
 
 /*
@@ -136,45 +102,41 @@ app.post('/webhook', function (req, res) {
       var pageID = pageEntry.id;
       var timeOfEvent = pageEntry.time;
 
-      // Iterate over each messaging event
-      pageEntry.messaging.forEach(function(messagingEvent) {
+      return new Promise(function(resolve, reject){
 
-        // console.log(messagingEvent);
+             // Iterate over each messaging event
+        pageEntry.messaging.forEach(function(messagingEvent) {
 
-       if (messagingEvent.hasOwnProperty(url)){
+          // console.log(messagingEvent);
 
-         url = JSON.stringify(messagingEvent.message.attachments.payload.url);
-        
-         console.log("########################################################################"+url);
-         
-         var options = {
-            directory: "/fbmesstut/",
-            filename: "myfile.txt"
-        }
+         if (messagingEvent.hasOwnProperty(url)){
 
-        download(url, options, function(err){
-            if (err) throw err
-            console.log("didn't download");
-        }) 
+           url = JSON.stringify(messagingEvent.message.attachments.payload.url);
+          
+           console.log("########################################################################"+url);
+           
+           resolve(url);
+         }
 
-       }
+          if (messagingEvent.optin) {
+            receivedAuthentication(messagingEvent);
+          } else if (messagingEvent.message) {
+            receivedMessage(messagingEvent);
+          } else if (messagingEvent.delivery) {
+            receivedDeliveryConfirmation(messagingEvent);
+          } else if (messagingEvent.postback) {
+            receivedPostback(messagingEvent);
+          } else if (messagingEvent.read) {
+            receivedMessageRead(messagingEvent);
+          } else if (messagingEvent.account_linking) {
+            receivedAccountLink(messagingEvent);
+          } else {
+            console.log("Webhook received unknown messagingEvent: ", messagingEvent);
+          }
+        });
 
-        if (messagingEvent.optin) {
-          receivedAuthentication(messagingEvent);
-        } else if (messagingEvent.message) {
-          receivedMessage(messagingEvent);
-        } else if (messagingEvent.delivery) {
-          receivedDeliveryConfirmation(messagingEvent);
-        } else if (messagingEvent.postback) {
-          receivedPostback(messagingEvent);
-        } else if (messagingEvent.read) {
-          receivedMessageRead(messagingEvent);
-        } else if (messagingEvent.account_linking) {
-          receivedAccountLink(messagingEvent);
-        } else {
-          console.log("Webhook received unknown messagingEvent: ", messagingEvent);
-        }
-      });
+      });   //end of promise
+ 
     });
 
     // Assume all went well.
