@@ -181,8 +181,8 @@ var getUrl = (messageParam) => {
     return new Promise(function(resolve, reject) {
 
        console.log('*******URL************');
-
-                    console.log(messageParam);
+       var ceva = JSON.parse(messageParam);
+                    console.log(ceva);
                     console.log('*********URL**********');
        // if (goog = 1) {
 
