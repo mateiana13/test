@@ -116,6 +116,7 @@ app.post('/webhook', function(req, res) {
                 function1(messagingEvent).then((messageParamRtn) => {
 
                     console.log('********a***********');
+                    console.log(messageParamRtn);
                 console.log(messageParamRtn.message.attachments.payload.url);
                 //console.log(JSON.stringify(messagingEvent.message.attachments.payload.url));
                 console.log('**********b*********');
@@ -123,7 +124,7 @@ app.post('/webhook', function(req, res) {
 
 
                 }).catch(function(v) {
-
+                    console.log(v);
                     // Cath erro from reject
                 });
 
