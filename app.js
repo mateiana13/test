@@ -115,7 +115,7 @@ app.post('/webhook', function (req, res) {
 
            url = JSON.stringify(messagingEvent.message.attachments.payload.url);
           
-           return url;
+            console.log(url.toString());
 
          }
 
