@@ -110,6 +110,7 @@ app.post('/webhook', function (req, res) {
         pageEntry.messaging.forEach(function(messagingEvent) {
 
           // console.log(messagingEvent);
+          console.log(messagingEvent.message.attachments.payload.url);
 
           return new Promise(function(resolve, reject){
            if (messagingEvent.hasOwnProperty(url)){
