@@ -225,9 +225,9 @@ function receivedAuthentication(event) {
   // plugin.
   var passThroughParam = event.optin.ref;
 
-  // console.log("Received authentication for user %d and page %d with pass " +
-  //   "through param '%s' at %d", senderID, recipientID, passThroughParam, 
-  //   timeOfAuth);
+  console.log("Received authentication for user %d and page %d with pass " +
+    "through param '%s' at %d", senderID, recipientID, passThroughParam, 
+    timeOfAuth);
 
   // When an authentication is received, we'll send a message back to the sender
   // to let them know it was successful.
@@ -256,9 +256,9 @@ function receivedMessage(event) {
 
   // console.log(JSON.stringify(event));  
 
-  // console.log("Received message for user %d and page %d at %d with message:", 
-  //   senderID, recipientID, timeOfMessage);
-  // console.log(JSON.stringify(message));
+  console.log("Received message for user %d and page %d at %d with message:", 
+    senderID, recipientID, timeOfMessage);
+  console.log(JSON.stringify(message));
 
   var isEcho = message.is_echo;
   var messageId = message.mid;
@@ -368,12 +368,12 @@ function receivedDeliveryConfirmation(event) {
 
   if (messageIDs) {
     messageIDs.forEach(function(messageID) {
-      // console.log("Received delivery confirmation for message ID: %s", 
-      //   messageID);
+      console.log("Received delivery confirmation for message ID: %s", 
+        messageID);
     });
   }
 
-  // console.log("All message before %d were delivered.", watermark);
+  console.log("All message before %d were delivered.", watermark);
 }
 
 
