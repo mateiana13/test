@@ -90,16 +90,9 @@ app.get('/webhook', function(req, res) {
 
  var url;
 
- var getURL = function(){
 
-    return new Promise(resolve, reject){
-
-
-        app.post('/webhook', function (req, res) {
+app.post('/webhook', function (req, res) {
   var data = req.body;
-
-  
-
 
   // Make sure this is a page subscription
   if (data.object == 'page') {
@@ -114,10 +107,7 @@ app.get('/webhook', function(req, res) {
 
              // Iterate over each messaging event
         pageEntry.messaging.forEach(function(messagingEvent) {
-
-          // console.log(messagingEvent);
-
-
+            console.log(messagingEvent);
       
            if (messagingEvent.hasOwnProperty(url)){
 
@@ -125,8 +115,6 @@ app.get('/webhook', function(req, res) {
                      url = JSON.stringify(messagingEvent.message.attachments.payload.url);
                     console.log(url);
 
-
-                    resolve(url);
             }
 
         
@@ -163,13 +151,7 @@ app.get('/webhook', function(req, res) {
 
 
 
-    }
-
-      
-
-
- }
-
+  
 /*
  * This path is used for account linking. The account linking call-to-action
  * (sendAccountLinking) is pointed to this URL. 
@@ -890,7 +872,7 @@ app.listen(app.get('port'), function() {
 });
 
 
-console.log(getURL());
+
 
 module.exports = app;
 
