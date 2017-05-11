@@ -180,7 +180,7 @@ var getUrl = (messageParam) => {
 
     return new Promise(function(resolve, reject) {
 
-        console.log(messageParam.message.attachments.payload.url);
+        console.log(messageParam);
        // if (goog = 1) {
 
             resolve('test');
