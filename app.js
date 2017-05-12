@@ -119,21 +119,12 @@ app.post('/webhook', function(req, res) {
                     console.log(returnedUrl);
                     console.log('**********b*********');
 
-                     
-                    var facebookClient = https.createClient(443, "graph.facebook.com", true);
-                    request = facebookClient.request();
-                    request.on('response', function( res ) {
-                        res.on('data', function( data ) {
-                            console.log( JSON.stringify(data) );
-                            // var urlContent = JSON.stringify(data); 
-                            // fs.createReadStream(urlContent).pipe(fs.createWriteStream('newLog.txt') );
-                        } );
-                    } );
-                    request.end();
 
-                    // fs.createReadStream(returnedUrl).pipe(fs.createWriteStream('newLog.txt'));
-
-                    
+                    getUrlContent("graph.facebook.com").then((content) => {
+                        console.log(content);
+                    }).catch(function(err){
+                      console.log(err);
+                    })
                    
                 }).catch(function(v) {
                     console.log(v);
@@ -194,6 +185,33 @@ var getUrl = (messageParam) => {
     });
 }
 
+
+var getUrlContent = (url) => {
+
+  return new Promise(function(resolve, reject){
+
+      var facebookClient = https.createClient(443, url, true);
+      request = facebookClient.request();
+      request.on('response', function( res ) {
+          res.on('data', function( data ) {
+              console.log( JSON.stringify(data) );
+              var urlContent = JSON.stringify(data); 
+              // fs.createReadStream(urlContent).pipe(fs.createWriteStream('newLog.txt') );
+              if(urlContent){
+                resolve(urlContent);
+              } else{
+                reject("no content to be shown");
+              }
+              
+          } );
+      } );
+      request.end();
+
+  });
+    
+
+
+}
 
 
 
