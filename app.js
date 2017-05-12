@@ -185,6 +185,8 @@ var getUrlContent = (url) => {
       var facebookClient = http.createClient(443, url, true);
       request = facebookClient.request();
       request.on('response', function( res ) {
+
+        console.log('*----------------REQUEST IN PROMISE------------------*');
           res.on('data', function( data ) {
               console.log('********************** ' + JSON.stringify(data) );
               var urlContent = JSON.stringify(data); 
@@ -200,7 +202,7 @@ var getUrlContent = (url) => {
       request.end();
 
   });
-  console.log('*----------------END PROMISE------------------*');
+
 }    
 
 
