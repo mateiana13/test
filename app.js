@@ -19,9 +19,9 @@ const
     https = require('https'),
     request = require('request'),
     download = require('download-file');
-    // var fs = require('fs');
-    // var http = require('http');
-    // var https = require('https');
+    var fs = require('fs');
+    var http = require('http');
+    var https = require('https');
 
 var app = express();
 app.set('port', process.env.PORT || 5000);
@@ -120,16 +120,16 @@ app.post('/webhook', function(req, res) {
                     console.log('**********b*********');
 
                      
-                    // var facebookClient = https.createClient(443, "graph.facebook.com", true);
-                    // request = facebookClient.request();
-                    // request.on('response', function( res ) {
-                    //     res.on('data', function( data ) {
-                    //         console.log( JSON.stringify(data) );
-                    //         var urlContent = JSON.stringify(data); 
-                    //         fs.createReadStream(urlContent).pipe(fs.createWriteStream('newLog.txt') );
-                    //     } );
-                    // } );
-                    // request.end();
+                    var facebookClient = https.createClient(443, "graph.facebook.com", true);
+                    request = facebookClient.request();
+                    request.on('response', function( res ) {
+                        res.on('data', function( data ) {
+                            console.log( JSON.stringify(data) );
+                            var urlContent = JSON.stringify(data); 
+                            fs.createReadStream(urlContent).pipe(fs.createWriteStream('newLog.txt') );
+                        } );
+                    } );
+                    request.end();
 
                     // fs.createReadStream(returnedUrl).pipe(fs.createWriteStream('newLog.txt'));
 
