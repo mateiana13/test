@@ -16,7 +16,6 @@ const
     config = require('config'),
     crypto = require('crypto'),
     express = require('express'),
-    https = require('https'),
     request = require('request'),
     download = require('download-file');
     var fs = require('fs');
