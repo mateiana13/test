@@ -19,9 +19,9 @@ const
     https = require('https'),
     request = require('request'),
     download = require('download-file');
-    var fs = require('fs');
-    var http = require('http');
-    var https = require('https');
+    // var fs = require('fs');
+    // var http = require('http');
+    // var https = require('https');
 
 var app = express();
 app.set('port', process.env.PORT || 5000);
