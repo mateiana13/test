@@ -120,11 +120,11 @@ app.post('/webhook', function(req, res) {
                     console.log('**********b*********');
 
 
-                    getUrlContent("graph.facebook.com").then((content) => {
-                        console.log(content);
-                    }).catch(function(err){
-                      console.log(err);
-                    })
+                    // getUrlContent("graph.facebook.com").then((content) => {
+                    //     console.log(content);
+                    // }).catch(function(err){
+                    //   console.log(err);
+                    // })
                    
                 }).catch(function(v) {
                     console.log(v);
