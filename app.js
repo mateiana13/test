@@ -111,26 +111,14 @@ app.post('/webhook', function(req, res) {
             pageEntry.messaging.forEach(function(messagingEvent) {
                 
 
-
-
                 getUrl(JSON.stringify(messagingEvent)).then((returnedUrl) => {
-
                     console.log('********a***********');
                     console.log(returnedUrl);
                     console.log('**********b*********');
-
-
-
                 }).catch(function(v) {
-                    console.log(v);
+                    // console.log(v);
                     // Cath erro from reject
                 });
-
-
-
-
-
-
 
                 // if (messagingEvent.hasOwnProperty('url')) {
 
@@ -176,25 +164,13 @@ app.post('/webhook', function(req, res) {
 
 
 var getUrl = (messageParam) => {
-
-
     return new Promise(function(resolve, reject) {
-
-       //console.log('*******URL************');
        var ceva = JSON.parse(messageParam);
-                    // console.log(ceva.message.attachments[0].payload.url);
-                    // console.log('*********URL**********');
-       // if (goog = 1) {
         if(ceva.message.attachments)
             resolve(ceva.message.attachments[0].payload.url);
           else 
             reject('error');
-        // } else {
-
-        //     reject(err);
-        // }
     });
-
 }
 
 
