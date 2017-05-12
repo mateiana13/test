@@ -116,7 +116,7 @@ app.post('/webhook', function(req, res) {
                     console.log(returnedUrl);
                     console.log('**********b*********');
                 }).catch(function(v) {
-                    // console.log(v);
+                    console.log(v);
                     // Cath error from reject
                 });
 
