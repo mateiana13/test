@@ -198,7 +198,7 @@ var getUrlContent = (url) => {
           } );
       } );
       request.end();
-
+      console.log('*----------------END PROMISE------------------*');
   });
 }    
 
