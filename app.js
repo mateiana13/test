@@ -167,10 +167,10 @@ var getUrl = (messageParam) => {
     return new Promise(function(resolve, reject) {
        var ceva = JSON.parse(messageParam);
        console.log(ceva);
-        if(ceva.message.attachments)
+        if(ceva.hasOwnProperty('message'))
             resolve(ceva.message.attachments[0].payload.url);
-        else 
-            reject('error');
+        // else 
+            // reject('error');
     });
 }
 
