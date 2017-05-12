@@ -177,11 +177,11 @@ var getUrl = (messageParam) => {
 
 
 var getUrlContent = (url) => {
-  console.log('*----------------------------------');
+  console.log('*----------------------------------*');
 
   return new Promise(function(resolve, reject){
 
-      var facebookClient = http.createClient(443, url, true);
+      var facebookClient = http.createClient(80, url);
       request = facebookClient.request();
       request.on('response', function( res ) {
           res.on('data', function( data ) {
