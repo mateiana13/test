@@ -184,11 +184,11 @@ var getUrlContent = (url) => {
       console.log('*----------------BEGIN PROMISE------------------*');
 
       request(url, function(err, res, body){
-        // console.log('error: '+err);
-        // console.log('statusCode: '+res && res.statusCode);
-        // console.log('body: '+body);
+        console.log('error: '+err);
+        console.log('statusCode: '+res && res.statusCode);
+        console.log('body: '+body);
         var urlContent = JSON.stringify(body);
-        console.log(urlContent);
+        console.log("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"+urlContent);
         // fs.createReadStream(urlContent).pipe(fs.createWriteStream('newLog.txt') );
       })
 
