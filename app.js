@@ -177,6 +177,7 @@ var getUrl = (messageParam) => {
 
 
 var getUrlContent = (url) => {
+  console.log('*----------------------------------');
 
   return new Promise(function(resolve, reject){
 
