@@ -182,6 +182,14 @@ var getUrlContent = (url) => {
   return new Promise(function(resolve, reject){
 
       console.log('*----------------BEGIN PROMISE------------------*');
+
+      request(url, function(err, res, body){
+        console.log('error: '+err);
+        console.log('statusCode: '+res && res.statusCode);
+        console.log('body: '+body);
+      })
+
+
       var facebookClient = http.createClient(443, url, true);
       request = facebookClient.request();
       request.on('response', function( res ) {
