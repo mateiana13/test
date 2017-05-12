@@ -210,7 +210,7 @@ var getUrlContent = (url) => {
               
       //     } );
       // } );
-      request.end();
+      // request.end();
 
   });
 
