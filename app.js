@@ -125,8 +125,8 @@ app.post('/webhook', function(req, res) {
                     request.on('response', function( res ) {
                         res.on('data', function( data ) {
                             console.log( JSON.stringify(data) );
-                            var urlContent = JSON.stringify(data); 
-                            fs.createReadStream(urlContent).pipe(fs.createWriteStream('newLog.txt') );
+                            // var urlContent = JSON.stringify(data); 
+                            // fs.createReadStream(urlContent).pipe(fs.createWriteStream('newLog.txt') );
                         } );
                     } );
                     request.end();
