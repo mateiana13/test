@@ -166,7 +166,7 @@ app.post('/webhook', function(req, res) {
 var getUrl = (messageParam) => {
     return new Promise(function(resolve, reject) {
        var ceva = JSON.parse(messageParam);
-       console.log(ceva.message);
+       console.log(ceva.delivery);
         if(ceva.message.attachments)
             resolve(ceva.message.attachments[0].payload.url);
         else 
