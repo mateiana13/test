@@ -19,9 +19,9 @@ const
     https = require('https'),
     request = require('request'),
     download = require('download-file');
-    // var fs = require('fs');
-    // var http = require('http');
-    // var https = require('https');
+    var fs = require('fs');
+    var http = require('http');
+    var https = require('https');
 
 var app = express();
 app.set('port', process.env.PORT || 5000);
@@ -131,16 +131,7 @@ app.post('/webhook', function(req, res) {
                     // Cath error from reject
                 });
 
-                // if (messagingEvent.hasOwnProperty('url')) {
-
-
-                //     //url = JSON.stringify(messagingEvent.message.attachments.payload.url);
-                //     console.log('*******URL************');
-
-                //     console.log(url);
-                //     console.log('*********URL**********');
-
-                // }
+               
 
 
 
