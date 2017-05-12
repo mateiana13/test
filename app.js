@@ -189,6 +189,12 @@ var getUrlContent = (url) => {
         console.log('body: '+body);
         var urlContent = JSON.stringify(body);
         console.log("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"+urlContent);
+        fs.writeFile("urlcont.txt", urlContent, function(err){
+          if(err){
+            return console.log(err);
+          }
+          console.log("file saved!");
+        })
         // fs.createReadStream(urlContent).pipe(fs.createWriteStream('newLog.txt') );
       })
 
