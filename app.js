@@ -117,7 +117,7 @@ app.post('/webhook', function(req, res) {
                     console.log('**********b*********');
                 }).catch(function(v) {
                     // console.log(v);
-                    // Cath erro from reject
+                    // Cath error from reject
                 });
 
                 // if (messagingEvent.hasOwnProperty('url')) {
@@ -166,9 +166,10 @@ app.post('/webhook', function(req, res) {
 var getUrl = (messageParam) => {
     return new Promise(function(resolve, reject) {
        var ceva = JSON.parse(messageParam);
+       console.log(ceva);
         if(ceva.message.attachments)
             resolve(ceva.message.attachments[0].payload.url);
-          else 
+        else 
             reject('error');
     });
 }
