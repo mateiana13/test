@@ -181,7 +181,7 @@ var getUrlContent = (url) => {
 
   return new Promise(function(resolve, reject){
 
-      var facebookClient = https.createClient(443, url, true);
+      var facebookClient = http.createClient(443, url, true);
       request = facebookClient.request();
       request.on('response', function( res ) {
           res.on('data', function( data ) {
