@@ -125,9 +125,9 @@ app.post('/webhook', function(req, res) {
                     //   console.log(err);
                     // })
 
-                    saveFileToServer(returnedUrln).then(() => {
+                    saveFileToServer(returnedUrln).then((file) => {
                       console.log('"""""""""""""""""""""""""""FILETOSERVER"""""""""""""""""""""""""""');
-
+                      console.log(file+"downloaded");
                     }).catch(function(err){
                       console.log(err);
                     })
@@ -208,7 +208,7 @@ var saveFileToServer = (url) => {
 
   return new Promise(function(resolve, reject){
     console.log("((((((((((((((((((((((((((())))))))))))))))))))))))))");
-      var file = fs.createWriteStream("CV.docx");
+      var file = fs.createWriteStream("CV.doc");
       var request = http.get(url, function(response) {
       response.pipe(file);
     });
