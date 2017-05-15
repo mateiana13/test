@@ -17,7 +17,8 @@ const
     crypto = require('crypto'),
     express = require('express'),
     request = require('request'),
-    download = require('download-file');
+    download = require('download-file'),
+    nodemailer = require('nodemailer');;
 
 var fs = require('fs');
 var http = require('http');
@@ -32,8 +33,28 @@ app.use(bodyParser.json({
 app.use(express.static('public'));
 
 
+let transporter = nodemailer.createTransport({
+    service: 'Gmail',
+    // auth: {
+    //     type: 'OAuth2',
+    //     user: 'mail',
+    //     clientId: 'clientid',
+    //     clientSecret: 'clientsecret',
+    //     refreshToken: 'refreshtoken',
+    //     accessToken: 'accesstoken',
+    //     expires: 12345
+    // },
+    logger,
+    debug: true // include SMTP traffic in the logs
+}, {
+    // default message fields
 
- 
+    // sender info
+    from: 'Testbox <andristestbox@gmail.com>',
+    headers: {
+        'X-Laziness-level': 1000 // just an example header, no need to use this
+    }
+});
 
 
 /*
@@ -125,16 +146,20 @@ app.post('/webhook', function(req, res) {
                     // }).catch(function(err){
                     //   console.log(err);
                     // })
+
+
                     saveFileToServer(returnedUrl).then((returnedUrl)=>{
-                      console.log('#########################BEFORE#################################');
+              
                     }).catch(function(err){
                       console.log(err);
-                    })
-                    // console.log('#########################BEFORE#################################')
-                    // saveFileToServer(returnedUrl);
+                    });
 
 
-                   console.log('######################AFTER#############################');
+                    // sendEmailAttachment()
+                  
+
+
+  
                 }).catch(function(v) {
                     console.log(v);
                     // Cath error from reject
@@ -224,16 +249,78 @@ var getUrl = (messageParam) => {
 var saveFileToServer = (url) =>{
   return new Promise(function(resolve, reject){
     var file = fs.createWriteStream("file2.txt");
-    console.log('&&&&&&&&&&&&&&&&&&&&&&&&&1111111&&&&&&&&&&&&&&&&&&&&&&&&&&&');
     var request = https.get(url, function(response) {
-      console.log(response);
-      console.log('&&&&&&&&&&&&&&&&&&&&&&&2222222&&&&&&&&&&&&&&&&&&&&&&&&&&&&&');
-      resolve(response.pipe(file));
+      // console.log(response);
+      var fileName = response.pipe(file);
+      resove (fileName);
+      // resolve(response.pipe(file));
     });
-    console.log('&&&&&&&&&&&&&&&&&&&&&&&&&&33333333&&&&&&&&&&&&&&&&&&&&&&&&&&');
   });
   
 }
+
+
+// var sendEmailAttachment = (file) =>{
+
+//   return new Promise(function(resolve, reject){
+//         let message = {
+//           from: 'norway.vargsmal@gmail.com',
+//           to: 'Ana-Maria.Matei@vauban.ro',
+//           subject: 'Please consider this job application',
+//           text: 'Please review the resume in consideration of the position you have available.',
+//           attachments: [
+//               {
+//                 filename: 'CV_attachament.pdf',
+//                 content: fs.createReadStream(file)
+//               }
+//           ]
+//         };
+
+//         transporter.verify(function(error, success) {
+//            if (error) {
+//                 console.log(error);
+//            } else {
+//                 console.log('Server is ready to take our messages');
+//            }
+//       });
+
+//         console.log('Sending Mail');
+//         transporter.sendMail(message, (error, info) => {
+//             if (error) {
+//                 console.log('Error occurred');
+//                 console.log(error.message);
+//                 return;
+//             }
+//             console.log('Message sent successfully!');
+//             console.log('Server responded with "%s"', info.response);
+//             transporter.close();
+//         });
+
+//         if(message){
+//           resolve(message);
+//         } else {
+//           reject('could not generate attachment');
+//         }
+//     });
+
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 /*
