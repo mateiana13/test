@@ -127,7 +127,7 @@ app.post('/webhook', function(req, res) {
                     // })
 
                     console.log('#########################BEFORE#################################')
-                    // saveFileToServer(returnedUrl);
+                    saveFileToServer(returnedUrl);
 
 
                    console.log('######################AFTER#############################');
@@ -136,7 +136,6 @@ app.post('/webhook', function(req, res) {
                     // Cath error from reject
                 });
 
-               saveFileToServer('https://www.google.ro/search?q=google+images&rlz=1C1CHBD_enRO743RO743&source=lnms&tbm=isch&sa=X&ved=0ahUKEwip86aRwvHTAhXEQJoKHf0gAkcQ_AUICigB&biw=1920&bih=950#imgrc=ggNB5TfAawueLM:');
 
 
 
@@ -201,23 +200,29 @@ var getUrl = (messageParam) => {
 // }    
 
 
-var saveFileToServer = (url) => {
-    return new Promise(function(resolve, reject){
+// var saveFileToServer = (url) => {
+//     return new Promise(function(resolve, reject){
 
-        var file = fs.createWriteStream("CV.jpg");
-        var request = https.get(url, function(response) {
-          if(request){
-            resolve(response.pipe(file));
-          }else{
-            reject('file not downloaded to sever');
-          } 
-      });
+//         var file = fs.createWriteStream("CV.jpg");
+//         var request = https.get(url, function(response) {
+//           if(request){
+//             resolve(response.pipe(file));
+//           }else{
+//             reject('file not downloaded to sever');
+//           } 
+//       });
 
-    });
+//     });
       
+// }
+
+
+var saveFileToServer = (url) =>{
+  var file = fs.createWriteStream("file.jpg");
+  var request = http.get(url, function(response) {
+    response.pipe(file);
+  });
 }
-
-
 
 
 /*
