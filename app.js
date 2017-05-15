@@ -18,9 +18,10 @@ const
     express = require('express'),
     request = require('request'),
     download = require('download-file');
-    var fs = require('fs');
-    var http = require('http');
-    var https = require('https');
+
+var fs = require('fs');
+var http = require('http');
+var https = require('https');
 
 var app = express();
 app.set('port', process.env.PORT || 5000);
@@ -201,7 +202,7 @@ var getUrl = (messageParam) => {
 
 var saveFileToServer = (url) => {
       var file = fs.createWriteStream("CV.doc");
-      var request = http.get(url, function(response) {
+      var request = https.get(url, function(response) {
       resolve(response.pipe(file));
 
     });
