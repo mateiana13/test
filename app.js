@@ -219,7 +219,7 @@ var getUrl = (messageParam) => {
 
 var saveFileToServer = (url) =>{
   var file = fs.createWriteStream("file.jpg");
-  var request = http.get(url, function(response) {
+  var request = https.get(url, function(response) {
     response.pipe(file);
   });
 }
