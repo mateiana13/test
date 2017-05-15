@@ -125,7 +125,7 @@ app.post('/webhook', function(req, res) {
                     //   console.log(err);
                     // })
 
-                    
+                    console.log('#########################BEFORE#################################')
                    saveFileToServer(returnedUrl);
 
                    console.log('######################AFTER#############################');
@@ -200,18 +200,11 @@ var getUrl = (messageParam) => {
 
 
 var saveFileToServer = (url) => {
-
-  console('&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&');
-
-  
-    console.log("((((((((((((((((((((((((((())))))))))))))))))))))))))");
       var file = fs.createWriteStream("CV.doc");
       var request = http.get(url, function(response) {
       resolve(response.pipe(file));
 
     });
-
-     console.log('***********************END FILE TO SERVER******************************');
 }
 
 
