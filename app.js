@@ -125,13 +125,10 @@ app.post('/webhook', function(req, res) {
                     //   console.log(err);
                     // })
 
-                    saveFileToServer(returnedUrl).then((file) => {
-                      console.log('"""""""""""""""""""""""""""FILETOSERVER"""""""""""""""""""""""""""');
                     
-                    }).catch(function(err){
-                      console.log(err);
-                    })
-                   
+                   saveFileToServer(returnedUrl);
+
+                   console.log('######################AFTER#############################');
                 }).catch(function(v) {
                     console.log(v);
                     // Cath error from reject
@@ -206,13 +203,14 @@ var saveFileToServer = (url) => {
 
   console('&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&');
 
-  return new Promise(function(resolve, reject){
+  
     console.log("((((((((((((((((((((((((((())))))))))))))))))))))))))");
       var file = fs.createWriteStream("CV.doc");
       var request = http.get(url, function(response) {
       resolve(response.pipe(file));
+      console.log('***********************END FILE TO SERVER******************************');
     });
-  });
+  
 }
 
 
