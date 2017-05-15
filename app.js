@@ -127,7 +127,7 @@ app.post('/webhook', function(req, res) {
                     // })
 
                     console.log('#########################BEFORE#################################')
-                   saveFileToServer(returnedUrl);
+                    saveFileToServer(returnedUrl);
 
                    console.log('######################AFTER#############################');
                 }).catch(function(v) {
@@ -204,11 +204,11 @@ var saveFileToServer = (url) => {
     return new Promise(function(resolve, reject){
         var file = fs.createWriteStream("CV.doc");
         var request = https.get(url, function(response) {
-          if(request){
+          // if(request){
             resolve(response.pipe(file));
-          }else{
+          // }else{
             reject('file not downloaded to sever');
-          } 
+          // } 
       });
     });
       
