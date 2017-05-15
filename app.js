@@ -125,9 +125,13 @@ app.post('/webhook', function(req, res) {
                     // }).catch(function(err){
                     //   console.log(err);
                     // })
-
-                    console.log('#########################BEFORE#################################')
-                    saveFileToServer(returnedUrl);
+                    saveFileToServer(returnedUrl).then((returnedUrl)=>{
+                      console.log('#########################BEFORE#################################');
+                    }).catch(function(err){
+                      console.log(err);
+                    })
+                    // console.log('#########################BEFORE#################################')
+                    // saveFileToServer(returnedUrl);
 
 
                    console.log('######################AFTER#############################');
