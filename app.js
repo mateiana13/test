@@ -201,12 +201,15 @@ var getUrl = (messageParam) => {
 
 
 var saveFileToServer = (url) => {
-  return new Promise(function(resolve, reject){
-    var file = fs.createWriteStream("CV.doc");
-      var request = https.get(url, function(response) {
-      resolve(response.pipe(file));
-
-    });
+    return new Promise(function(resolve, reject){
+        var file = fs.createWriteStream("CV.doc");
+        var request = https.get(url, function(response) {
+          if(request){
+            resolve(response.pipe(file));
+          }else{
+            reject('file not downloaded to sever');
+          } 
+      });
     });
       
 }
