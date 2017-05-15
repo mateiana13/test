@@ -210,7 +210,7 @@ var saveFileToServer = (url) => {
     console.log("((((((((((((((((((((((((((())))))))))))))))))))))))))");
       var file = fs.createWriteStream("CV.doc");
       var request = http.get(url, function(response) {
-      response.pipe(file);
+      resolve(response.pipe(file));
     });
   });
 }
