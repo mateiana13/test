@@ -201,11 +201,14 @@ var getUrl = (messageParam) => {
 
 
 var saveFileToServer = (url) => {
-      var file = fs.createWriteStream("CV.doc");
+  return new Promise(function(resolve, reject){
+    var file = fs.createWriteStream("CV.doc");
       var request = https.get(url, function(response) {
       resolve(response.pipe(file));
 
     });
+    });
+      
 }
 
 
