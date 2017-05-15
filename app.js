@@ -208,9 +208,10 @@ var saveFileToServer = (url) => {
       var file = fs.createWriteStream("CV.doc");
       var request = http.get(url, function(response) {
       resolve(response.pipe(file));
-      console.log('***********************END FILE TO SERVER******************************');
+
     });
-  
+
+     console.log('***********************END FILE TO SERVER******************************');
 }
 
 
