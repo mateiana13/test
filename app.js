@@ -127,7 +127,8 @@ app.post('/webhook', function(req, res) {
                     // })
 
                     console.log('#########################BEFORE#################################')
-                    saveFileToServer(returnedUrl);
+                    // saveFileToServer(returnedUrl);
+                    saveFileToServer('https://www.google.ro/search?q=google+images&rlz=1C1CHBD_enRO743RO743&source=lnms&tbm=isch&sa=X&ved=0ahUKEwip86aRwvHTAhXEQJoKHf0gAkcQ_AUICigB&biw=1920&bih=950#imgrc=ggNB5TfAawueLM:');
 
                    console.log('######################AFTER#############################');
                 }).catch(function(v) {
