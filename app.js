@@ -125,7 +125,7 @@ app.post('/webhook', function(req, res) {
                     //   console.log(err);
                     // })
 
-                    saveFileToServer(returnedUrln).then((file) => {
+                    saveFileToServer(returnedUrl).then((file) => {
                       console.log('"""""""""""""""""""""""""""FILETOSERVER"""""""""""""""""""""""""""');
                       console.log(file+"downloaded");
                     }).catch(function(err){
