@@ -219,10 +219,12 @@ var getUrl = (messageParam) => {
 
 var saveFileToServer = (url) =>{
   var file = fs.createWriteStream("file2.txt");
+  console.log('&&&&&&&&&&&&&&&&&&&&&&&&&1111111&&&&&&&&&&&&&&&&&&&&&&&&&&&')
   var request = https.get(url, function(response) {
+    console.log('&&&&&&&&&&&&&&&&&&&&&&&2222222&&&&&&&&&&&&&&&&&&&&&&&&&&&&&')
     response.pipe(file);
   });
-  console.log('&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&')
+  console.log('&&&&&&&&&&&&&&&&&&&&&&&&&&33333333&&&&&&&&&&&&&&&&&&&&&&&&&&')
 }
 
 
