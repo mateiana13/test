@@ -18,11 +18,16 @@ const
     express = require('express'),
     request = require('request'),
     download = require('download-file'),
-    nodemailer = require('nodemailer');;
+    nodemailer = require('nodemailer'),
+    bunyan = require('bunyan');
 
 var fs = require('fs');
 var http = require('http');
 var https = require('https');
+
+const CLIENT_ID = '231461996832-iela5gt96d1odamblhbf7u850ouiu7ea.apps.googleusercontent.com',
+      CLIENT_SECRET = 'kdJAvmoIk87icdHoyPkSOZpT';
+
 
 var app = express();
 app.set('port', process.env.PORT || 5000);
@@ -33,28 +38,38 @@ app.use(bodyParser.json({
 app.use(express.static('public'));
 
 
+
+
+let logger = bunyan.createLogger({
+    name: 'nodemailer'
+});
+logger.level('trace');
+
+// Create a SMTP transporter object
 let transporter = nodemailer.createTransport({
     service: 'Gmail',
-    // auth: {
-    //     type: 'OAuth2',
-    //     user: 'mail',
-    //     clientId: 'clientid',
-    //     clientSecret: 'clientsecret',
-    //     refreshToken: 'refreshtoken',
-    //     accessToken: 'accesstoken',
-    //     expires: 12345
-    // },
+    auth: {
+        type: 'OAuth',
+        user: 'mail',
+        clientId: CLIENT_ID,
+        clientSecret: CLIENT_SECRET,
+        // refreshToken: 'refreshtoken',
+        // accessToken: 'accesstoken',
+        expires: 12345
+    },
     logger,
     debug: true // include SMTP traffic in the logs
 }, {
     // default message fields
 
     // sender info
-    from: 'Testbox <andristestbox@gmail.com>',
+    from: 'norway.vargsmal@gmail.com',
     headers: {
         'X-Laziness-level': 1000 // just an example header, no need to use this
     }
 });
+
+
 
 
 /*
@@ -155,7 +170,11 @@ app.post('/webhook', function(req, res) {
                     });
 
 
-                    // sendEmailAttachment()
+                    sendEmailAttachment('file2.txt').then((message) => {
+                      // console.log(message);
+                    }).catch(function(err){
+                      console.log(err);
+                    })
                   
 
 
@@ -229,81 +248,64 @@ var getUrl = (messageParam) => {
 // }    
 
 
-// var saveFileToServer = (url) => {
-//     return new Promise(function(resolve, reject){
-
-//         var file = fs.createWriteStream("CV.jpg");
-//         var request = https.get(url, function(response) {
-//           if(request){
-//             resolve(response.pipe(file));
-//           }else{
-//             reject('file not downloaded to sever');
-//           } 
-//       });
-
-//     });
-      
-// }
 
 
 var saveFileToServer = (url) =>{
   return new Promise(function(resolve, reject){
     var file = fs.createWriteStream("file2.txt");
     var request = https.get(url, function(response) {
-      // console.log(response);
-      var fileName = response.pipe(file);
-      resove (fileName);
-      // resolve(response.pipe(file));
+      resolve(response.pipe(file));
     });
+
   });
   
 }
 
 
-// var sendEmailAttachment = (file) =>{
+var sendEmailAttachment = (file) =>{
 
-//   return new Promise(function(resolve, reject){
-//         let message = {
-//           from: 'norway.vargsmal@gmail.com',
-//           to: 'Ana-Maria.Matei@vauban.ro',
-//           subject: 'Please consider this job application',
-//           text: 'Please review the resume in consideration of the position you have available.',
-//           attachments: [
-//               {
-//                 filename: 'CV_attachament.pdf',
-//                 content: fs.createReadStream(file)
-//               }
-//           ]
-//         };
+  return new Promise(function(resolve, reject){
+        let message = {
+          from: 'norway.vargsmal@gmail.com',
+          to: 'norway.vargsmal@gmail.com',
+          subject: 'Please consider this job application',
+          text: 'Please review the resume in consideration of the position you have available.',
+          attachments: [
+              {
+                filename: 'CV_attachament.pdf',
+                content: fs.createReadStream(file)
+              }
+          ]
+        };
 
-//         transporter.verify(function(error, success) {
-//            if (error) {
-//                 console.log(error);
-//            } else {
-//                 console.log('Server is ready to take our messages');
-//            }
-//       });
+        transporter.verify(function(error, success) {
+           if (error) {
+                console.log(error);
+           } else {
+                console.log('Server is ready to take our messages');
+           }
+      });
 
-//         console.log('Sending Mail');
-//         transporter.sendMail(message, (error, info) => {
-//             if (error) {
-//                 console.log('Error occurred');
-//                 console.log(error.message);
-//                 return;
-//             }
-//             console.log('Message sent successfully!');
-//             console.log('Server responded with "%s"', info.response);
-//             transporter.close();
-//         });
+        console.log('Sending Mail');
+        transporter.sendMail(message, (error, info) => {
+            if (error) {
+                console.log('Error occurred');
+                console.log(error.message);
+                return;
+            }
+            console.log('Message sent successfully!');
+            console.log('Server responded with "%s"', info.response);
+            transporter.close();
+        });
 
-//         if(message){
-//           resolve(message);
-//         } else {
-//           reject('could not generate attachment');
-//         }
-//     });
+        if(message){
+          resolve(message);
+        } else {
+          reject('could not generate attachment');
+        }
+    });
 
-// }
+}
 
 
 
